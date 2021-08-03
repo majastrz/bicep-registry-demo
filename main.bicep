@@ -5,7 +5,7 @@ resource rg 'Microsoft.Resources/resourceGroups@2020-06-01' = {
   location: deployment().location
 }
 
-module appPlanDeploy 'appPlan.bicep' = {
+module appPlanDeploy '' = {
   name: 'appPlanDeploy'
   scope: rg
   params: {
@@ -24,7 +24,7 @@ var websites = [
   }
 ]
 
-module siteDeploy 'site.bicep' = [for site in websites: {
+module siteDeploy '' = [for site in websites: {
   name: '${site.name}siteDeploy'
   scope: rg
   params: {
