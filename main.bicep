@@ -5,11 +5,11 @@ resource rg 'Microsoft.Resources/resourceGroups@2020-06-01' = {
   location: deployment().location
 }
 
-module appPlanDeploy '' = {
-  name: 'appPlanDeploy'
+module appPlanDeploy 'br:majastrzoci.azurecr.io/demo/plan:v2' = {
+  name: 'planDeploy'
   scope: rg
   params: {
-    namePrefix: 'adotfrank'
+    namePrefix: 'hello'
   }
 }
 
@@ -24,7 +24,7 @@ var websites = [
   }
 ]
 
-module siteDeploy '' = [for site in websites: {
+module siteDeploy 'br:majastrzoci.azurecr.io/demo/site:v2' = [for site in websites: {
   name: '${site.name}siteDeploy'
   scope: rg
   params: {
