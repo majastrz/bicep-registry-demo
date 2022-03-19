@@ -1,0 +1,57 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.4.1316.35208",
+      "templateHash": "7716603811733960453"
+    }
+  },
+  "variables": {
+    "numberOfAccounts": 2,
+    "blobsPerAccount": 3,
+    "saprefix": "[uniqueString(resourceGroup().id)]"
+  },
+  "resources": [
+    {
+      "copy": {
+        "name": "sa",
+        "count": "[length(range(0, variables('numberOfAccounts')))]"
+      },
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2021-08-01",
+      "name": "[format('{0}{1}', variables('saprefix'), range(0, variables('numberOfAccounts'))[copyIndex()])]",
+      "location": "[resourceGroup().location]",
+      "sku": {
+        "name": "Standard_LRS"
+      },
+      "kind": "StorageV2"
+    },
+    {
+      "copy": {
+        "name": "blobSvc",
+        "count": "[length(range(0, variables('numberOfAccounts')))]"
+      },
+      "type": "Microsoft.Storage/storageAccounts/blobServices",
+      "apiVersion": "2021-08-01",
+      "name": "[format('{0}/{1}', format('{0}{1}', variables('saprefix'), range(0, variables('numberOfAccounts'))[range(0, variables('numberOfAccounts'))[copyIndex()]]), 'default')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', format('{0}{1}', variables('saprefix'), range(0, variables('numberOfAccounts'))[range(0, variables('numberOfAccounts'))[copyIndex()]]))]"
+      ]
+    },
+    {
+      "copy": {
+        "name": "containers",
+        "count": "[length(range(0, mul(variables('numberOfAccounts'), variables('blobsPerAccount'))))]"
+      },
+      "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+      "apiVersion": "2021-08-01",
+      "name": "[format('{0}/{1}/{2}', format('{0}{1}', variables('saprefix'), range(0, variables('numberOfAccounts'))[range(0, variables('numberOfAccounts'))[copyIndex()]]), 'default', format('container{0}', mod(range(0, mul(variables('numberOfAccounts'), variables('blobsPerAccount')))[copyIndex()], variables('blobsPerAccount'))))]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts/blobServices', format('{0}{1}', variables('saprefix'), range(0, variables('numberOfAccounts'))[range(0, variables('numberOfAccounts'))[copyIndex()]]), 'default')]",
+        "[resourceId('Microsoft.Storage/storageAccounts', format('{0}{1}', variables('saprefix'), range(0, variables('numberOfAccounts'))[range(0, variables('numberOfAccounts'))[copyIndex()]]))]"
+      ]
+    }
+  ]
+}

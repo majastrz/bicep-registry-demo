@@ -1,0 +1,23 @@
+{
+  "cloud": {
+    "currentProfile": "AzureCloud",
+    "credentialPrecedence": [
+      "AzureCLI",
+      "AzurePowerShell"
+    ]
+  },
+  "analyzers": {
+    "core": {
+      "enabled": true,
+      "verbose": false,
+      "rules": {
+        "no-hardcoded-env-urls": {
+          "level": "warning"
+        },
+        "no-loc-expr-outside-params": {
+          "level": "off"
+        }
+      }
+    }
+  }
+}

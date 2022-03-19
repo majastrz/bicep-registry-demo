@@ -5,7 +5,9 @@ resource rg 'Microsoft.Resources/resourceGroups@2020-06-01' = {
   location: deployment().location
 }
 
-module appPlanDeploy 'br:majastrzoci.azurecr.io/demo/plan:v2' = {
+// private 'br:majastrzoci.azurecr.io/demo/plan:v2'
+// public 'br:majastrzpublic.azurecr.io/demo/plan:v2'
+module appPlanDeploy 'br:majastrzpublic.azurecr.io/demo/plan:v2' = {
   name: 'planDeploy'
   scope: rg
   params: {
@@ -24,7 +26,9 @@ var websites = [
   }
 ]
 
-module siteDeploy 'br:majastrzoci.azurecr.io/demo/site:v2' = [for site in websites: {
+// private 'br:majastrzoci.azurecr.io/demo/site:v2' 
+// public 'br:majastrzpublic.azurecr.io/demo/site:v2' 
+module siteDeploy 'br:majastrzpublic.azurecr.io/demo/site:v2' = [for site in websites: {
   name: '${site.name}siteDeploy'
   scope: rg
   params: {
@@ -34,5 +38,15 @@ module siteDeploy 'br:majastrzoci.azurecr.io/demo/site:v2' = [for site in websit
     dockerImageTag: site.tag
   }
 }]
+
+// module empty 'ts:996a2f3f-ee01-4ffd-9765-d2c3fc98f30a/majastrz-oci/empty-template:v1' = {
+//   scope: rg
+//   name: 'empty'
+// }
+
+// module empty2 'br:majastrzoci.azurecr.io/publish/empty@sha256:4aea1793a7ae4883972fb25443524817c51a457a7303b4f9966aca540199aece' = {
+//   scope: rg
+//   name: 'empty2'
+// }
 
 output siteUrls array = [for (site, i) in websites: siteDeploy[i].outputs.siteUrl]

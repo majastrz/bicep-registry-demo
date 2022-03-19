@@ -1,0 +1,54 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+  "languageVersion": "1.9-experimental",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "EXPERIMENTAL_WARNING": "Symbolic name support in ARM is experimental, and should be enabled for testing purposes only. Do not enable this setting for any production usage, or you may be unexpectedly broken at any time!",
+    "_generator": {
+      "name": "bicep",
+      "version": "0.4.1314.48594",
+      "templateHash": "17971336039510462396"
+    }
+  },
+  "variables": {
+    "accounts": [
+      {
+        "name": "majastrzcri",
+        "rg": "majastrz-cri"
+      },
+      {
+        "name": "majastrzcri2",
+        "rg": "majastrz-cri2"
+      }
+    ]
+  },
+  "resources": {
+    "storage": {
+      "copy": {
+        "name": "storage",
+        "count": "[length(variables('accounts'))]"
+      },
+      "existing": true,
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2021-08-01",
+      "resourceGroup": "[variables('accounts')[copyIndex()].rg]",
+      "name": "[variables('accounts')[copyIndex()].name]"
+    }
+  },
+  "outputs": {
+    "keys": {
+      "type": "array",
+      "copy": {
+        "count": "[length(variables('accounts'))]",
+        "input": "[listKeys(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, variables('accounts')[copyIndex()].rg), 'Microsoft.Storage/storageAccounts', variables('accounts')[copyIndex()].name), '2021-08-01').keys[0].value]"
+      }
+    },
+    "tiers": {
+      "type": "array",
+      "copy": {
+        "count": "[length(variables('accounts'))]",
+        "input": "[reference(format('storage[{0}]', copyIndex())).accessTier]"
+      }
+    }
+  }
+}

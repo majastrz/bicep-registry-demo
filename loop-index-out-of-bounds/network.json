@@ -1,0 +1,46 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.4.1330.64919",
+      "templateHash": "7062338129327930837"
+    }
+  },
+  "resources": [
+    {
+      "copy": {
+        "name": "vnet",
+        "count": "[length(range(0, 2))]"
+      },
+      "type": "Microsoft.Network/virtualNetworks",
+      "apiVersion": "2021-05-01",
+      "name": "[string(copyIndex())]"
+    },
+    {
+      "copy": {
+        "name": "subnet",
+        "count": "[length(range(0, 6))]"
+      },
+      "type": "Microsoft.Network/virtualNetworks/subnets",
+      "apiVersion": "2021-05-01",
+      "name": "[format('{0}/{1}', string(mod(copyIndex(), 2)), string(copyIndex()))]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/virtualNetworks', string(mod(copyIndex(), 2)))]"
+      ]
+    },
+    {
+      "copy": {
+        "name": "thing",
+        "count": "[length(range(0, 24))]"
+      },
+      "type": "Microsoft.Network/virtualNetworks/subnets/things",
+      "apiVersion": "2021-05-01",
+      "name": "[format('{0}/{1}/{2}', string(mod(mod(copyIndex(), 6), 2)), string(mod(copyIndex(), 6)), string(copyIndex()))]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/virtualNetworks/subnets', string(mod(mod(copyIndex(), 6), 2)), string(mod(copyIndex(), 6)))]"
+      ]
+    }
+  ]
+}
