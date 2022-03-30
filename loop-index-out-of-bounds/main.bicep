@@ -20,3 +20,17 @@ resource containers 'Microsoft.Storage/storageAccounts/blobServices/containers@2
   parent: blobSvc[k % numberOfAccounts]
   name: 'container${k % blobsPerAccount}'
 }]
+
+/*
+k = 0..5
+k | parent | name
+
+0 | 0 | 0
+1 | 1 | 1
+2 | 0 | 2
+3 | 1 | 0
+4 | 0 | 1
+5 | 1 | 2
+
+
+*/
