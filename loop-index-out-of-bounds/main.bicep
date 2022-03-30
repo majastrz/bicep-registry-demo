@@ -25,12 +25,12 @@ resource containers 'Microsoft.Storage/storageAccounts/blobServices/containers@2
 k = 0..5
 k | parent | name
 
-0 | 0 | 0
-1 | 1 | 1
-2 | 0 | 2
-3 | 1 | 0
-4 | 0 | 1
-5 | 1 | 2
+0 | storage0 | container0
+1 | storage1 | container1
+2 | storage0 | container2
+3 | storage1 | container0
+4 | storage0 | container1
+5 | storage1 | container2
 
 
 */

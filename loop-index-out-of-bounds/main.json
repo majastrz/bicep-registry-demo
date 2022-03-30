@@ -4,8 +4,8 @@
   "metadata": {
     "_generator": {
       "name": "bicep",
-      "version": "0.4.1316.35208",
-      "templateHash": "7716603811733960453"
+      "version": "0.4.1344.2841",
+      "templateHash": "9020096172752708630"
     }
   },
   "variables": {
@@ -47,10 +47,9 @@
       },
       "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
       "apiVersion": "2021-08-01",
-      "name": "[format('{0}/{1}/{2}', format('{0}{1}', variables('saprefix'), range(0, variables('numberOfAccounts'))[range(0, variables('numberOfAccounts'))[copyIndex()]]), 'default', format('container{0}', mod(range(0, mul(variables('numberOfAccounts'), variables('blobsPerAccount')))[copyIndex()], variables('blobsPerAccount'))))]",
+      "name": "[format('{0}/{1}/{2}', format('{0}{1}', variables('saprefix'), range(0, variables('numberOfAccounts'))[range(0, variables('numberOfAccounts'))[mod(range(0, mul(variables('numberOfAccounts'), variables('blobsPerAccount')))[copyIndex()], variables('numberOfAccounts'))]]), 'default', format('container{0}', mod(range(0, mul(variables('numberOfAccounts'), variables('blobsPerAccount')))[copyIndex()], variables('blobsPerAccount'))))]",
       "dependsOn": [
-        "[resourceId('Microsoft.Storage/storageAccounts/blobServices', format('{0}{1}', variables('saprefix'), range(0, variables('numberOfAccounts'))[range(0, variables('numberOfAccounts'))[copyIndex()]]), 'default')]",
-        "[resourceId('Microsoft.Storage/storageAccounts', format('{0}{1}', variables('saprefix'), range(0, variables('numberOfAccounts'))[range(0, variables('numberOfAccounts'))[copyIndex()]]))]"
+        "[resourceId('Microsoft.Storage/storageAccounts/blobServices', format('{0}{1}', variables('saprefix'), range(0, variables('numberOfAccounts'))[range(0, variables('numberOfAccounts'))[mod(range(0, mul(variables('numberOfAccounts'), variables('blobsPerAccount')))[copyIndex()], variables('numberOfAccounts'))]]), 'default')]"
       ]
     }
   ]
