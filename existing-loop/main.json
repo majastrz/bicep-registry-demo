@@ -1,0 +1,39 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.5.6.5923",
+      "templateHash": "3207640347438276757"
+    }
+  },
+  "variables": {
+    "copy": [
+      {
+        "name": "agentPoolProfiles",
+        "count": "[length(variables('agentPools'))]",
+        "input": {
+          "name": "[variables('agentPools')[copyIndex('agentPoolProfiles')].name]",
+          "vnetSubnetID": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('agentPools')[copyIndex()].virtualNetwork.virtualNetworkName, variables('agentPools')[copyIndex('agentPoolProfiles')].virtualNetwork.subnetName)]"
+        }
+      }
+    ],
+    "agentPools": [
+      {
+        "name": "NodePool1",
+        "virtualNetwork": {
+          "virtualNetworkName": "vnet1",
+          "subnetName": "subnet1"
+        }
+      }
+    ]
+  },
+  "resources": [],
+  "outputs": {
+    "agentPoolProfiles": {
+      "type": "array",
+      "value": "[variables('agentPoolProfiles')]"
+    }
+  }
+}
