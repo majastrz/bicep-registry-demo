@@ -12,3 +12,12 @@ resource thing 'Microsoft.Network/virtualNetworks/subnets/things@2021-05-01' = [
   parent: subnet[k % 6]
   name: string(k)
 }]
+
+resource dns 'Microsoft.Network/dnsZones@2018-05-01' = [for (x, xx) in range(0, 4): {
+  name: string(x)
+  location: 'global'
+
+  dependsOn: [
+    thing[x + 4]
+  ]
+}]

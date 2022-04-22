@@ -4,8 +4,8 @@
   "metadata": {
     "_generator": {
       "name": "bicep",
-      "version": "0.4.1344.2841",
-      "templateHash": "1868138788963053581"
+      "version": "0.4.1387.14077",
+      "templateHash": "12456137008925508094"
     }
   },
   "resources": [
@@ -40,6 +40,19 @@
       "name": "[format('{0}/{1}/{2}', string(mod(mod(copyIndex(), 6), 2)), string(mod(copyIndex(), 6)), string(copyIndex()))]",
       "dependsOn": [
         "[resourceId('Microsoft.Network/virtualNetworks/subnets', string(mod(mod(copyIndex(), 6), 2)), string(mod(copyIndex(), 6)))]"
+      ]
+    },
+    {
+      "copy": {
+        "name": "dns",
+        "count": "[length(range(0, 4))]"
+      },
+      "type": "Microsoft.Network/dnsZones",
+      "apiVersion": "2018-05-01",
+      "name": "[string(range(0, 4)[copyIndex()])]",
+      "location": "global",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/virtualNetworks/subnets/things', string(mod(mod(add(range(0, 4)[copyIndex()], 4), 6), 2)), string(mod(add(range(0, 4)[copyIndex()], 4), 6)), string(add(range(0, 4)[copyIndex()], 4)))]"
       ]
     }
   ]
