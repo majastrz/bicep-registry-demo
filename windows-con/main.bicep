@@ -1,4 +1,4 @@
 
 
 
-module test './modules/connections/test.bicep'
+module test './modules/co'
