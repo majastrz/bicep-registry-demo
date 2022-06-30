@@ -39,10 +39,10 @@ module siteDeploy 'br:majastrzpublic.azurecr.io/demo/site:v2' = [for site in web
   }
 }]
 
-// module empty 'ts:996a2f3f-ee01-4ffd-9765-d2c3fc98f30a/majastrz-oci/empty-template:v1' = {
-//   scope: rg
-//   name: 'empty'
-// }
+module empty 'ts:996a2f3f-ee01-4ffd-9765-d2c3fc98f30a/majastrz-oci/empty-template:v1' = {
+  scope: rg
+  name: 'empty'
+}
 
 // module empty2 'br:majastrzoci.azurecr.io/publish/empty@sha256:4aea1793a7ae4883972fb25443524817c51a457a7303b4f9966aca540199aece' = {
 //   scope: rg

@@ -4,11 +4,10 @@
   "metadata": {
     "_generator": {
       "name": "bicep",
-      "version": "0.4.1066.43423",
-      "templateHash": "15806273059006621874"
+      "version": "0.7.80.22046",
+      "templateHash": "1081532957957206454"
     }
   },
-  "functions": [],
   "variables": {
     "websites": [
       {
@@ -30,7 +29,7 @@
     },
     {
       "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2020-06-01",
+      "apiVersion": "2020-10-01",
       "name": "planDeploy",
       "resourceGroup": "adotfrank-rg",
       "properties": {
@@ -96,7 +95,7 @@
         "count": "[length(variables('websites'))]"
       },
       "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2020-06-01",
+      "apiVersion": "2020-10-01",
       "name": "[format('{0}siteDeploy', variables('websites')[copyIndex()].name)]",
       "resourceGroup": "adotfrank-rg",
       "properties": {
@@ -106,7 +105,7 @@
         "mode": "Incremental",
         "parameters": {
           "appPlanId": {
-            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, 'adotfrank-rg'), 'Microsoft.Resources/deployments', 'planDeploy'), '2020-06-01').outputs.planId.value]"
+            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, 'adotfrank-rg'), 'Microsoft.Resources/deployments', 'planDeploy')).outputs.planId.value]"
           },
           "namePrefix": {
             "value": "[variables('websites')[copyIndex()].name]"
@@ -191,6 +190,24 @@
         "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, 'adotfrank-rg'), 'Microsoft.Resources/deployments', 'planDeploy')]",
         "[subscriptionResourceId('Microsoft.Resources/resourceGroups', 'adotfrank-rg')]"
       ]
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2020-10-01",
+      "name": "empty",
+      "resourceGroup": "adotfrank-rg",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "templateLink": {
+          "id": "/subscriptions/996a2f3f-ee01-4ffd-9765-d2c3fc98f30a/resourceGroups/majastrz-oci/providers/Microsoft.Resources/templateSpecs/empty-template/versions/v1"
+        }
+      },
+      "dependsOn": [
+        "[subscriptionResourceId('Microsoft.Resources/resourceGroups', 'adotfrank-rg')]"
+      ]
     }
   ],
   "outputs": {
@@ -198,7 +215,7 @@
       "type": "array",
       "copy": {
         "count": "[length(variables('websites'))]",
-        "input": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, 'adotfrank-rg'), 'Microsoft.Resources/deployments', format('{0}siteDeploy', variables('websites')[copyIndex()].name)), '2020-06-01').outputs.siteUrl.value]"
+        "input": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, 'adotfrank-rg'), 'Microsoft.Resources/deployments', format('{0}siteDeploy', variables('websites')[copyIndex()].name))).outputs.siteUrl.value]"
       }
     }
   }
