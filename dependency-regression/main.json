@@ -4,8 +4,8 @@
   "metadata": {
     "_generator": {
       "name": "bicep",
-      "version": "0.5.6.12127",
-      "templateHash": "14086299143217900710"
+      "version": "0.7.124.62264",
+      "templateHash": "11139685727692038816"
     }
   },
   "parameters": {
@@ -30,7 +30,10 @@
       "name": "[format('{0}/{1}/{2}', parameters('storageAccountName'), 'default', 'extension')]",
       "properties": {
         "publicAccess": "Container"
-      }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
+      ]
     },
     {
       "type": "Microsoft.Storage/storageAccounts",
