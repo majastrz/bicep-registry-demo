@@ -1,0 +1,44 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.9.1.41621",
+      "templateHash": "7419926248767236254"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/templateSpecs",
+      "apiVersion": "2022-02-01",
+      "name": "hello",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "displayName": "Hello",
+        "description": "My template spec"
+      }
+    },
+    {
+      "type": "Microsoft.Resources/templateSpecs/versions",
+      "apiVersion": "2022-02-01",
+      "name": "[format('{0}/{1}', 'hello', 'v1')]",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "description": "The very first version",
+        "mainTemplate": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "parameters": {},
+          "functions": [],
+          "variables": {},
+          "resources": [],
+          "outputs": {}
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/templateSpecs', 'hello')]"
+      ]
+    }
+  ]
+}

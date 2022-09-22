@@ -1,0 +1,31 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.8.111.58475",
+      "templateHash": "7650769908391264448"
+    }
+  },
+  "variables": {
+    "copy": [
+      {
+        "name": "agentPoolProfiles",
+        "count": "[length(variables('aksCluster').agentPools)]",
+        "input": {
+          "name": "[variables('aksCluster').agentPools[copyIndex('agentPoolProfiles')].name]",
+          "vnetSubnetID": "[if(equals(toLower(variables('aksCluster').network.plugin), toLower('azure')), extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', union(variables('defaultAgentPoolObject'), variables('aksCluster').agentPools[copyIndex()]).virtualNetwork.subscriptionId, union(variables('defaultAgentPoolObject'), variables('aksCluster').agentPools[copyIndex()]).virtualNetwork.resourceGroup), 'Microsoft.Network/virtualNetworks/subnets', union(variables('defaultAgentPoolObject'), variables('aksCluster').agentPools[copyIndex()]).virtualNetwork.virtualNetworkName, union(variables('defaultAgentPoolObject'), variables('aksCluster').agentPools[copyIndex('agentPoolProfiles')]).virtualNetwork.subnetName), null())]"
+        }
+      }
+    ],
+    "aksCluster": {
+      "agentPools": [],
+      "network": {
+        "plugin": "azure"
+      }
+    },
+    "defaultAgentPoolObject": {}
+  },
+  "resources": []
+}

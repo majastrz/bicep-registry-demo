@@ -1,0 +1,78 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.8.101.11985",
+      "templateHash": "17512014151338080842"
+    }
+  },
+  "parameters": {
+    "Location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "metadata": {
+        "description": "Region to deploy to"
+      }
+    }
+  },
+  "variables": {
+    "Names": [
+      "fruit-primary",
+      "fruit-secondary"
+    ],
+    "Service_Bus_Queues": [
+      "apples",
+      "oranges"
+    ]
+  },
+  "resources": [
+    {
+      "copy": {
+        "name": "serviceBuses",
+        "count": "[length(variables('Names'))]"
+      },
+      "type": "Microsoft.ServiceBus/namespaces",
+      "apiVersion": "2021-11-01",
+      "name": "[variables('Names')[copyIndex()]]",
+      "location": "[parameters('Location')]",
+      "sku": {
+        "name": "Premium",
+        "tier": "Premium"
+      },
+      "properties": {
+        "zoneRedundant": false
+      }
+    },
+    {
+      "copy": {
+        "name": "queues",
+        "count": "[length(variables('Service_Bus_Queues'))]"
+      },
+      "type": "Microsoft.ServiceBus/namespaces/queues",
+      "apiVersion": "2021-11-01",
+      "name": "[format('{0}/{1}', variables('Names')[0], variables('Service_Bus_Queues')[copyIndex()])]",
+      "dependsOn": [
+        "[resourceId('Microsoft.ServiceBus/namespaces', variables('Names')[0])]"
+      ]
+    },
+    {
+      "copy": {
+        "name": "queueAuthorizationRules",
+        "count": "[length(variables('Service_Bus_Queues'))]"
+      },
+      "type": "Microsoft.ServiceBus/namespaces/queues/authorizationRules",
+      "apiVersion": "2021-11-01",
+      "name": "[format('{0}/{1}/{2}', variables('Names')[0], variables('Service_Bus_Queues')[copyIndex()], 'Listen')]",
+      "properties": {
+        "rights": [
+          "Listen"
+        ]
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.ServiceBus/namespaces/queues', variables('Names')[0], variables('Service_Bus_Queues')[copyIndex()])]"
+      ]
+    }
+  ]
+}

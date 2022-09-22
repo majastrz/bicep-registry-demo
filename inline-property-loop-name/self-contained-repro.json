@@ -1,0 +1,62 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "languageVersion": "1.9-experimental",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "EXPERIMENTAL_WARNING": "Symbolic name support in ARM is experimental, and should be enabled for testing purposes only. Do not enable this setting for any production usage, or you may be unexpectedly broken at any time!",
+    "_generator": {
+      "name": "bicep",
+      "version": "0.9.31.35676",
+      "templateHash": "712989440558189250"
+    }
+  },
+  "variables": {
+    "copy": [
+      {
+        "name": "agentPoolProfiles",
+        "count": "[length(variables('agentPools'))]",
+        "input": {
+          "name": "[variables('agentPools')[copyIndex('agentPoolProfiles')].name]",
+          "vnetSubnetID": "[resourceInfo(format('subnets[{0}]', mod(copyIndex('agentPoolProfiles'), 3))).id]"
+        }
+      }
+    ],
+    "agentPools": [
+      {
+        "name": "NodePool1",
+        "virtualNetwork": {
+          "virtualNetworkName": "vnet1",
+          "subnetName": "subnet1"
+        }
+      }
+    ]
+  },
+  "resources": {
+    "virtualNetworks": {
+      "copy": {
+        "name": "virtualNetworks",
+        "count": "[length(variables('agentPools'))]"
+      },
+      "existing": true,
+      "type": "Microsoft.Network/virtualNetworks",
+      "apiVersion": "2021-02-01",
+      "name": "[variables('agentPools')[copyIndex()].virtualNetwork.virtualNetworkName]"
+    },
+    "subnets": {
+      "copy": {
+        "name": "subnets",
+        "count": "[length(variables('agentPools'))]"
+      },
+      "existing": true,
+      "type": "Microsoft.Network/virtualNetworks/subnets",
+      "apiVersion": "2021-02-01",
+      "name": "[format('{0}/{1}', variables('agentPools')[mod(copyIndex(), 2)].virtualNetwork.virtualNetworkName, variables('agentPools')[copyIndex()].virtualNetwork.subnetName)]"
+    }
+  },
+  "outputs": {
+    "agentPoolProfiles": {
+      "type": "array",
+      "value": "[variables('agentPoolProfiles')]"
+    }
+  }
+}
