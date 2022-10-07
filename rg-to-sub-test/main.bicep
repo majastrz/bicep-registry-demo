@@ -1,3 +1,6 @@
+targetScope = 'resourceGroup'
+
+param rgname string
 param tsname string
 
 resource ts 'Microsoft.Resources/templateSpecs@2022-02-01' = {
@@ -5,7 +8,10 @@ resource ts 'Microsoft.Resources/templateSpecs@2022-02-01' = {
   location: resourceGroup().location
 }
 
-module sub 'sub.bicep' = {
+module rg 'create-rg.bicep' = {
   scope: subscription()
-  name: 's'
+  name: 'deploy-rg'
+  params: {
+    rgname: rgname
+  }
 }

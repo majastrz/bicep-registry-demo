@@ -1,7 +1,6 @@
 
 param foo string
 
-
 param bar array
 
 var hello = 3
