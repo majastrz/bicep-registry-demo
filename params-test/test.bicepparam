@@ -1,5 +1,5 @@
 
-using 'main.bicep'
+using 'foo.cs'
 
 param bar = [
   {
