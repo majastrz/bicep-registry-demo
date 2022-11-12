@@ -14,16 +14,23 @@ resource ts 'Microsoft.Resources/templateSpecs@2022-02-01' = {
   }
 }
 
-resource storage 'Microsoft.Storage/storageAccounts@2017-10-01' = {
-  name: tsName
-  #disable-next-line no-hardcoded-location
-  location: 'westus'
+resource storage 'Microsoft.Storage/storageAccounts@2022-05-01' = {
+  name: 'majastrzstacktest3'
+  location: resourceGroup().location
   sku: {
     name: 'Standard_LRS'
   }
   kind: 'StorageV2'
+}
+
+resource vnet 'Microsoft.Network/virtualNetworks@2022-05-01' = {
+  name: 'vnet'
+  location: resourceGroup().location
   properties: {
-    #disable-next-line BCP036
-    accessTier: 'Freezing'
+    addressSpace: {
+      addressPrefixes: [
+        '10.0.0.0/16'
+      ]
+    }
   }
 }
