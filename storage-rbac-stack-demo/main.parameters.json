@@ -1,0 +1,23 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "storageName": {
+      "value": "majastrzstackdemo7"
+    },
+    "containers": {
+      "value": [
+        {
+          "name": "one",
+          "reader": "09f1a6eb-2e34-43a3-97bc-9f9b043cb1dd",
+          "enabled": true
+        },
+        {
+          "name": "two",
+          "reader": "83cb6ceb-42ff-4c0f-9239-2afb8f90086a",
+          "enabled": true
+        }
+      ]
+    }
+  }
+}
