@@ -1,0 +1,58 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.14.6.61914",
+      "templateHash": "15411505536837562354"
+    }
+  },
+  "variables": {
+    "arrayWithNullThings": [
+      {
+        "id": "subnet0"
+      },
+      {
+        "id": "subnet1"
+      },
+      {
+        "id": null
+      },
+      {
+        "id": null
+      },
+      {
+        "id": "subnet2"
+      },
+      {
+        "id": "subnet3"
+      },
+      {
+        "id": null
+      },
+      {
+        "id": null
+      },
+      {
+        "id": "subnet4"
+      },
+      {
+        "id": "subnet5"
+      },
+      {
+        "id": null
+      },
+      {
+        "id": null
+      }
+    ]
+  },
+  "resources": [],
+  "outputs": {
+    "arrayWithoutNullThings": {
+      "type": "array",
+      "value": "[filter(variables('arrayWithNullThings'), lambda('x', not(equals(lambdaVariables('x').id, null()))))]"
+    }
+  }
+}
