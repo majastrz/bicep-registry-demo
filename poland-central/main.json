@@ -1,0 +1,47 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.14.46.61228",
+      "templateHash": "9597726165169863136"
+    }
+  },
+  "variables": {
+    "$fxv#0": {
+      "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+      "contentVersion": "1.0.0.0",
+      "metadata": {
+        "_generator": {
+          "name": "bicep",
+          "version": "0.14.46.61228",
+          "templateHash": "8359988288953583068"
+        }
+      },
+      "resources": []
+    },
+    "location": "Poland Central"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/templateSpecs/versions",
+      "apiVersion": "2022-02-01",
+      "name": "[format('{0}/{1}', 'test', 'v1')]",
+      "location": "[variables('location')]",
+      "properties": {
+        "description": "The very first template spec in Poland!",
+        "mainTemplate": "[variables('$fxv#0')]"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/templateSpecs', 'test')]"
+      ]
+    },
+    {
+      "type": "Microsoft.Resources/templateSpecs",
+      "apiVersion": "2022-02-01",
+      "name": "test",
+      "location": "[variables('location')]"
+    }
+  ]
+}

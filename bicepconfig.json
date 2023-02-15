@@ -11,6 +11,9 @@
       "enabled": true,
       "verbose": false,
       "rules": {
+        "no-hardcoded-location": {
+          "level": "off"
+        },
         "no-unused-params": {
           "level": "off"
         },
