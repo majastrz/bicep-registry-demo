@@ -1,0 +1,20 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.16.2.56959",
+      "templateHash": "14366694179925995835"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/templateSpecs/versions",
+      "apiVersion": "2022-02-01",
+      "name": "[format('{0}/{1}', 'myts', 'v1')]",
+      "location": "[resourceGroup().location]",
+      "properties": {}
+    }
+  ]
+}
