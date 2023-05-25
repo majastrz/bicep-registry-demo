@@ -1,0 +1,56 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "languageVersion": "1.10-experimental",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_EXPERIMENTAL_WARNING": "Symbolic name support in ARM is experimental, and should be enabled for testing purposes only. Do not enable this setting for any production usage, or you may be unexpectedly broken at any time!",
+    "_generator": {
+      "name": "bicep",
+      "version": "0.17.1.54307",
+      "templateHash": "4697210903103446082"
+    }
+  },
+  "resources": {},
+  "outputs": {
+    "v4info": {
+      "type": "object",
+      "value": "[parseCidr('10.144.0.0/20')]"
+    },
+    "v4subnets": {
+      "type": "array",
+      "copy": {
+        "count": "[length(range(0, 5))]",
+        "input": "[cidrSubnet('10.144.0.0/20', 24, range(0, 5)[copyIndex()])]"
+      }
+    },
+    "v4hosts": {
+      "type": "array",
+      "copy": {
+        "count": "[length(range(0, 5))]",
+        "input": "[cidrHost('10.144.3.0/24', range(0, 5)[copyIndex()])]"
+      }
+    },
+    "v6info": {
+      "type": "object",
+      "value": "[parseCidr('fdad:3236:5555::/48')]"
+    },
+    "v6subnets": {
+      "type": "array",
+      "copy": {
+        "count": "[length(range(0, 5))]",
+        "input": "[cidrSubnet('fdad:3236:5555::/48', 52, range(0, 5)[copyIndex()])]"
+      }
+    },
+    "v6hosts": {
+      "type": "array",
+      "copy": {
+        "count": "[length(range(0, 5))]",
+        "input": "[cidrHost('fdad:3236:5555:3000::/52', range(0, 5)[copyIndex()])]"
+      }
+    },
+    "itself": {
+      "type": "string",
+      "value": "[cidrSubnet('10.144.0.0/20', 20, 0)]"
+    }
+  }
+}
