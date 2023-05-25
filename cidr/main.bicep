@@ -85,5 +85,3 @@ Returns:
   'fdad:3236:5555:3000::5'
 ]
 */
-
-output itself string = cidrSubnet('10.144.0.0/20', 20, 0)
