@@ -31,6 +31,6 @@
   },
   "experimentalFeaturesEnabled": {
     "paramsFiles": true,
-    "extensibility": true
+    "extensibility": true 
   }
 }
