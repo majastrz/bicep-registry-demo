@@ -1,0 +1,11 @@
+{
+  "msbuild-sdks": {
+    "Microsoft.Build.NoTargets": "3.7.0",
+    "Microsoft.Build.Traversal": "4.1.0"
+  },
+  "sdk": {
+    "comment": "Need to use a particular version to ensure consistency across machines no matter what SDK versions they have installed.",
+    "version": "7.0.203",
+    "rollForward": "latestFeature"
+  }
+}

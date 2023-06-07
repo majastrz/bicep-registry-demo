@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.Build.NoTargets">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Bicep.CommandLine.win-x64" Version="0.17.1" />
+    <PackageReference Include="Azure.Bicep.MSBuild" Version="0.17.1" />
+    <PackageReference Include="Microsoft.VisualStudio.SlnGen" Version="10.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Bicep Include="main.bicep" />
+  </ItemGroup>
+
+</Project>
