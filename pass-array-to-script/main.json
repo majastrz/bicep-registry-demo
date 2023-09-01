@@ -1,0 +1,42 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "languageVersion": "1.10-experimental",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_EXPERIMENTAL_WARNING": "Symbolic name support in ARM is experimental, and should be enabled for testing purposes only. Do not enable this setting for any production usage, or you may be unexpectedly broken at any time!",
+    "_generator": {
+      "name": "bicep",
+      "version": "0.20.4.51522",
+      "templateHash": "220134743883970020"
+    }
+  },
+  "variables": {
+    "$fxv#0": "param(\r\n  [string]$resourceProviders\r\n)\r\n\r\n$jsonArray = $resourceProviders | ConvertFrom-Json\r\n\r\nforeach ($item in $jsonArray) {\r\n  Write-Output $item\r\n}",
+    "providers": [
+      "Microsoft.SecurityInsights",
+      "GitHub.Network"
+    ],
+    "formatted": "[replace(string(variables('providers')), '\"', '\\\"')]"
+  },
+  "resources": {
+    "script": {
+      "type": "Microsoft.Resources/deploymentScripts",
+      "apiVersion": "2020-10-01",
+      "name": "myScript",
+      "location": "centraluseuap",
+      "kind": "AzurePowerShell",
+      "properties": {
+        "azPowerShellVersion": "9.7",
+        "retentionInterval": "PT1H",
+        "scriptContent": "[variables('$fxv#0')]",
+        "arguments": "[format('-resourceProviders ''{0}''', variables('formatted'))]"
+      }
+    }
+  },
+  "outputs": {
+    "formatted": {
+      "type": "string",
+      "value": "[variables('formatted')]"
+    }
+  }
+}
