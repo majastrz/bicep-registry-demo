@@ -1,0 +1,45 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "languageVersion": "1.10-experimental",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_EXPERIMENTAL_WARNING": "Symbolic name support in ARM is experimental, and should be enabled for testing purposes only. Do not enable this setting for any production usage, or you may be unexpectedly broken at any time!",
+    "_generator": {
+      "name": "bicep",
+      "version": "0.20.4.51522",
+      "templateHash": "7692567997875896064"
+    }
+  },
+  "variables": {
+    "$fxv#0": {
+      "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {},
+      "functions": [],
+      "variables": {},
+      "resources": [],
+      "outputs": {}
+    }
+  },
+  "resources": {
+    "ts::v1": {
+      "type": "Microsoft.Resources/templateSpecs/versions",
+      "apiVersion": "2022-02-01",
+      "name": "[format('{0}/{1}', resourceGroup().name, 'v1')]",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "description": "The first version",
+        "mainTemplate": "[variables('$fxv#0')]"
+      },
+      "dependsOn": [
+        "ts"
+      ]
+    },
+    "ts": {
+      "type": "Microsoft.Resources/templateSpecs",
+      "apiVersion": "2022-02-01",
+      "name": "[resourceGroup().name]",
+      "location": "[resourceGroup().location]"
+    }
+  }
+}
