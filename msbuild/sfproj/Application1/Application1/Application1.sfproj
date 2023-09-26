@@ -35,7 +35,11 @@
     <None Include="StartupServices.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="main.bicep" />
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Bicep Include="main.bicep" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Stateless1\Stateless1.csproj" />
@@ -50,9 +54,7 @@
   <Target Name="ValidateMSBuildFiles" BeforeTargets="PrepareForBuild">
     <Error Condition="!Exists('..\packages\Microsoft.VisualStudio.Azure.Fabric.MSBuild.1.7.9\build\Microsoft.VisualStudio.Azure.Fabric.Application.props')" Text="Unable to find the '..\packages\Microsoft.VisualStudio.Azure.Fabric.MSBuild.1.7.9\build\Microsoft.VisualStudio.Azure.Fabric.Application.props' file. Please restore the 'Microsoft.VisualStudio.Azure.Fabric.MSBuild' Nuget package." />
     <Error Condition="!Exists('..\packages\Microsoft.VisualStudio.Azure.Fabric.MSBuild.1.7.9\build\Microsoft.VisualStudio.Azure.Fabric.Application.targets')" Text="Unable to find the '..\packages\Microsoft.VisualStudio.Azure.Fabric.MSBuild.1.7.9\build\Microsoft.VisualStudio.Azure.Fabric.Application.targets' file. Please restore the 'Microsoft.VisualStudio.Azure.Fabric.MSBuild' Nuget package." />
-
     <Error Condition="!Exists('..\packages\Azure.Bicep.CommandLine.win-x64.0.21.1\build\Azure.Bicep.CommandLine.win-x64.props')" Text="Unable to find the '..\packages\Azure.Bicep.CommandLine.win-x64.0.21.1\build\Azure.Bicep.CommandLine.win-x64.props' file. Please restore the 'Azure.Bicep.CommandLine.win-x64' Nuget package." />
-
     <Error Condition="!Exists('..\packages\Azure.Bicep.MSBuild.0.21.1\build\Azure.Bicep.MSBuild.props')" Text="Unable to find the '..\packages\Azure.Bicep.MSBuild.0.21.1\build\Azure.Bicep.MSBuild.props' file. Please restore the 'Azure.Bicep.MSBuild' Nuget package." />
     <Error Condition="!Exists('..\packages\Azure.Bicep.MSBuild.0.21.1\build\Azure.Bicep.MSBuild.targets')" Text="Unable to find the '..\packages\Azure.Bicep.MSBuild.0.21.1\build\Azure.Bicep.MSBuild.targets' file. Please restore the 'Azure.Bicep.MSBuild' Nuget package." />
   </Target>
