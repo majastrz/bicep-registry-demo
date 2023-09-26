@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- pre-SDK projects require manual imports of package .props files at the top -->
   <Import Project="..\packages\Azure.Bicep.CommandLine.win-x64.0.21.1\build\Azure.Bicep.CommandLine.win-x64.props" Condition="Exists('..\packages\Azure.Bicep.CommandLine.win-x64.0.21.1\build\Azure.Bicep.CommandLine.win-x64.props')" />
   <Import Project="..\packages\Azure.Bicep.MSBuild.0.21.1\build\Azure.Bicep.MSBuild.props" Condition="Exists('..\packages\Azure.Bicep.MSBuild.0.21.1\build\Azure.Bicep.MSBuild.props')" />
   <Import Project="..\packages\Microsoft.VisualStudio.Azure.Fabric.MSBuild.1.7.9\build\Microsoft.VisualStudio.Azure.Fabric.Application.props" Condition="Exists('..\packages\Microsoft.VisualStudio.Azure.Fabric.MSBuild.1.7.9\build\Microsoft.VisualStudio.Azure.Fabric.Application.props')" />
@@ -35,10 +36,15 @@
     <None Include="StartupServices.xml" />
   </ItemGroup>
   <ItemGroup>
+    <!-- 
+      sfproj doesn't respect AvailableItemName
+      Content forces the bicep file to be visible in VS
+    -->
     <Content Include="main.bicep" />
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <!-- Usual way to compile Bicep files in an msbuild project -->
     <Bicep Include="main.bicep" />
   </ItemGroup>
   <ItemGroup>
@@ -50,10 +56,15 @@
   </PropertyGroup>
   <Import Project="$(ApplicationProjectTargetsPath)" Condition="Exists('$(ApplicationProjectTargetsPath)')" />
   <Import Project="..\packages\Microsoft.VisualStudio.Azure.Fabric.MSBuild.1.7.9\build\Microsoft.VisualStudio.Azure.Fabric.Application.targets" Condition="Exists('..\packages\Microsoft.VisualStudio.Azure.Fabric.MSBuild.1.7.9\build\Microsoft.VisualStudio.Azure.Fabric.Application.targets')" />
+  <!-- pre-SDK projects require manual imports of package .targets files at the bottom -->
   <Import Project="..\packages\Azure.Bicep.MSBuild.0.21.1\build\Azure.Bicep.MSBuild.targets" Condition="Exists('..\packages\Azure.Bicep.MSBuild.0.21.1\build\Azure.Bicep.MSBuild.targets')" />
   <Target Name="ValidateMSBuildFiles" BeforeTargets="PrepareForBuild">
     <Error Condition="!Exists('..\packages\Microsoft.VisualStudio.Azure.Fabric.MSBuild.1.7.9\build\Microsoft.VisualStudio.Azure.Fabric.Application.props')" Text="Unable to find the '..\packages\Microsoft.VisualStudio.Azure.Fabric.MSBuild.1.7.9\build\Microsoft.VisualStudio.Azure.Fabric.Application.props' file. Please restore the 'Microsoft.VisualStudio.Azure.Fabric.MSBuild' Nuget package." />
     <Error Condition="!Exists('..\packages\Microsoft.VisualStudio.Azure.Fabric.MSBuild.1.7.9\build\Microsoft.VisualStudio.Azure.Fabric.Application.targets')" Text="Unable to find the '..\packages\Microsoft.VisualStudio.Azure.Fabric.MSBuild.1.7.9\build\Microsoft.VisualStudio.Azure.Fabric.Application.targets' file. Please restore the 'Microsoft.VisualStudio.Azure.Fabric.MSBuild' Nuget package." />
+    <!-- 
+      the conditions that are required on the top/bottom imports make it possible for the imports to silently fail
+      the following checks prevent that
+     -->
     <Error Condition="!Exists('..\packages\Azure.Bicep.CommandLine.win-x64.0.21.1\build\Azure.Bicep.CommandLine.win-x64.props')" Text="Unable to find the '..\packages\Azure.Bicep.CommandLine.win-x64.0.21.1\build\Azure.Bicep.CommandLine.win-x64.props' file. Please restore the 'Azure.Bicep.CommandLine.win-x64' Nuget package." />
     <Error Condition="!Exists('..\packages\Azure.Bicep.MSBuild.0.21.1\build\Azure.Bicep.MSBuild.props')" Text="Unable to find the '..\packages\Azure.Bicep.MSBuild.0.21.1\build\Azure.Bicep.MSBuild.props' file. Please restore the 'Azure.Bicep.MSBuild' Nuget package." />
     <Error Condition="!Exists('..\packages\Azure.Bicep.MSBuild.0.21.1\build\Azure.Bicep.MSBuild.targets')" Text="Unable to find the '..\packages\Azure.Bicep.MSBuild.0.21.1\build\Azure.Bicep.MSBuild.targets' file. Please restore the 'Azure.Bicep.MSBuild' Nuget package." />
