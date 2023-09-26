@@ -1,8 +1,12 @@
-<Project Sdk="Microsoft.Build.NoTargets">
+﻿<Project Sdk="Microsoft.Build.NoTargets">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <AvailableItemName Include="Bicep" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Azure.Bicep.CommandLine.win-x64" Version="0.17.1" />
@@ -16,5 +20,4 @@
   <ItemGroup>
     <Bicep Include="main.bicep" />
   </ItemGroup>
-
 </Project>
