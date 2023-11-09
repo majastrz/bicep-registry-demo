@@ -1,0 +1,114 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.22.153.44726",
+      "templateHash": "2788987493494846503"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "[format('mod-{0}', uniqueString('mod', deployment().name))]",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {},
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.22.153.44726",
+              "templateHash": "15626992843594967243"
+            }
+          },
+          "resources": []
+        }
+      }
+    },
+    {
+      "copy": {
+        "name": "mods",
+        "count": "[length(createArray())]"
+      },
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "[format('mods-{0}-{1}', copyIndex(), uniqueString('mods', deployment().name))]",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.22.153.44726",
+              "templateHash": "15626992843594967243"
+            }
+          },
+          "resources": []
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "[format('superLongName0123456789012345678901234567890123456-{0}', uniqueString('superLongName012345678901234567890123456789012345678901234567890123456789', deployment().name))]",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.22.153.44726",
+              "templateHash": "15626992843594967243"
+            }
+          },
+          "resources": []
+        }
+      }
+    },
+    {
+      "copy": {
+        "name": "superLongNames012345678901234567890123456789012345678901234567890123456789",
+        "count": "[length(createArray())]"
+      },
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "[format('superLongNames01234567890123456789012345678901-{0}-{1}', copyIndex(), uniqueString('superLongNames012345678901234567890123456789012345678901234567890123456789', deployment().name))]",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.22.153.44726",
+              "templateHash": "15626992843594967243"
+            }
+          },
+          "resources": []
+        }
+      }
+    }
+  ]
+}
