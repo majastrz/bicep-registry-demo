@@ -1,0 +1,9 @@
+
+For single modules, name will be generated (if name not set) as:
+
+'<symbolic name prefix>-uniqueString(<symbolic name>, deployment().name)'
+
+
+For module loops, name will be generated (if name not set) as:
+
+'<symbolic name prefix>-${copyIndex()}-${uniqueString('<symbolic name>', deployment().name)}'

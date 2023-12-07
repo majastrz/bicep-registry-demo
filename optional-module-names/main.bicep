@@ -4,7 +4,6 @@ module mod 'mod.bicep' = {
   params: {
     
   }
-  //name: 'hello'
 }
 
 module mods 'mod.bicep' = [for item in []: {
