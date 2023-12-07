@@ -1,0 +1,52 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "languageVersion": "1.10-experimental",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_EXPERIMENTAL_WARNING": "Symbolic name support in ARM is experimental, and should be enabled for testing purposes only. Do not enable this setting for any production usage, or you may be unexpectedly broken at any time!",
+    "_generator": {
+      "name": "bicep",
+      "version": "0.20.4.51522",
+      "templateHash": "6229130636399230689"
+    }
+  },
+  "parameters": {
+    "kubeConfig": {
+      "type": "string"
+    }
+  },
+  "imports": {
+    "kubernetes": {
+      "provider": "Kubernetes",
+      "version": "1.0.0",
+      "config": {
+        "kubeConfig": "[parameters('kubeConfig')]",
+        "namespace": "demo"
+      }
+    }
+  },
+  "resources": {
+    "namespace": {
+      "import": "kubernetes",
+      "type": "core/Namespace@v1",
+      "properties": {
+        "metadata": {
+          "name": "myNamespace"
+        }
+      }
+    },
+    "storage": {
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2023-01-01",
+      "name": "myStorage",
+      "location": "[resourceGroup().location]",
+      "sku": {
+        "name": "Premium_LRS"
+      },
+      "kind": "StorageV2",
+      "dependsOn": [
+        "namespace"
+      ]
+    }
+  }
+}

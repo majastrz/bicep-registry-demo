@@ -6,8 +6,8 @@
     "_EXPERIMENTAL_WARNING": "Symbolic name support in ARM is experimental, and should be enabled for testing purposes only. Do not enable this setting for any production usage, or you may be unexpectedly broken at any time!",
     "_generator": {
       "name": "bicep",
-      "version": "0.17.1.54307",
-      "templateHash": "4697210903103446082"
+      "version": "0.20.4.51522",
+      "templateHash": "6721699049469528471"
     }
   },
   "resources": {},
@@ -47,10 +47,6 @@
         "count": "[length(range(0, 5))]",
         "input": "[cidrHost('fdad:3236:5555:3000::/52', range(0, 5)[copyIndex()])]"
       }
-    },
-    "itself": {
-      "type": "string",
-      "value": "[cidrSubnet('10.144.0.0/20', 20, 0)]"
     }
   }
 }
