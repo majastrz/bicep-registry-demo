@@ -1,0 +1,14 @@
+{
+  "analyzers": {
+    "core": {
+      "rules": {
+        "no-loc-expr-outside-params": {
+          "level": "off"
+        }
+      }
+    }
+  },
+  "experimentalFeaturesEnabled": {
+    "optionalModuleNames": true
+  }
+}

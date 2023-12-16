@@ -1,0 +1,161 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.23.149.16182",
+      "templateHash": "16303972062202247955"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "[format('veryLongSymbolicNameThatExceedsTheMaximumPrefixLen-{0}', uniqueString('veryLongSymbolicNameThatExceedsTheMaximumPrefixLengthLimitSoICanTestMyAlgorithm', deployment().name))]",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "name": {
+            "value": "one"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.23.149.16182",
+              "templateHash": "14285594649810670530"
+            }
+          },
+          "parameters": {
+            "name": {
+              "type": "string"
+            }
+          },
+          "resources": [
+            {
+              "type": "Microsoft.Resources/deployments",
+              "apiVersion": "2022-09-01",
+              "name": "[format('veryLongSymbolicNameThatExceedsTheMaximumPrefixLen-{0}', uniqueString('veryLongSymbolicNameThatExceedsTheMaximumPrefixLengthLimitSoICanTestMyAlgorithm', deployment().name))]",
+              "properties": {
+                "expressionEvaluationOptions": {
+                  "scope": "inner"
+                },
+                "mode": "Incremental",
+                "parameters": {
+                  "name": {
+                    "value": "[parameters('name')]"
+                  }
+                },
+                "template": {
+                  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+                  "contentVersion": "1.0.0.0",
+                  "metadata": {
+                    "_generator": {
+                      "name": "bicep",
+                      "version": "0.23.149.16182",
+                      "templateHash": "9332659600301507495"
+                    }
+                  },
+                  "parameters": {
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "resources": [
+                    {
+                      "type": "Microsoft.Resources/templateSpecs",
+                      "apiVersion": "2022-02-01",
+                      "name": "[parameters('name')]",
+                      "location": "[resourceGroup().location]"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "[format('veryLongSymbolicNameThatExceedsTheMaximumPrefixLen-{0}', uniqueString('veryLongSymbolicNameThatExceedsTheMaximumPrefixLengthLimitSoICanTestMyAlgorithm2', deployment().name))]",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "name": {
+            "value": "two"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.23.149.16182",
+              "templateHash": "14285594649810670530"
+            }
+          },
+          "parameters": {
+            "name": {
+              "type": "string"
+            }
+          },
+          "resources": [
+            {
+              "type": "Microsoft.Resources/deployments",
+              "apiVersion": "2022-09-01",
+              "name": "[format('veryLongSymbolicNameThatExceedsTheMaximumPrefixLen-{0}', uniqueString('veryLongSymbolicNameThatExceedsTheMaximumPrefixLengthLimitSoICanTestMyAlgorithm', deployment().name))]",
+              "properties": {
+                "expressionEvaluationOptions": {
+                  "scope": "inner"
+                },
+                "mode": "Incremental",
+                "parameters": {
+                  "name": {
+                    "value": "[parameters('name')]"
+                  }
+                },
+                "template": {
+                  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+                  "contentVersion": "1.0.0.0",
+                  "metadata": {
+                    "_generator": {
+                      "name": "bicep",
+                      "version": "0.23.149.16182",
+                      "templateHash": "9332659600301507495"
+                    }
+                  },
+                  "parameters": {
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "resources": [
+                    {
+                      "type": "Microsoft.Resources/templateSpecs",
+                      "apiVersion": "2022-02-01",
+                      "name": "[parameters('name')]",
+                      "location": "[resourceGroup().location]"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
