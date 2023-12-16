@@ -1,0 +1,1 @@
+output accessTier string = 'Hot'

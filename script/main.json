@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "languageVersion": "2.1-experimental",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_EXPERIMENTAL_WARNING": "This template uses ARM features that are experimental. Experimental features should be enabled for testing purposes only, as there are no guarantees about the quality or stability of these features. Do not enable these settings for any production usage, or your production environment may be subject to breaking.",
+    "_EXPERIMENTAL_FEATURES_ENABLED": [
+      "Extensibility"
+    ],
+    "_generator": {
+      "name": "bicep",
+      "version": "0.23.1.45101",
+      "templateHash": "7373912739989464385"
+    }
+  },
+  "variables": {
+    "$fxv#0": "Write-Output \"Hello world!\";"
+  },
+  "resources": {
+    "script": {
+      "type": "Microsoft.Resources/deploymentScripts",
+      "apiVersion": "2020-10-01",
+      "name": "myScript",
+      "location": "italynorth",
+      "kind": "AzurePowerShell",
+      "properties": {
+        "azPowerShellVersion": "9.7",
+        "retentionInterval": "PT1H",
+        "scriptContent": "[variables('$fxv#0')]"
+      }
+    }
+  }
+}
