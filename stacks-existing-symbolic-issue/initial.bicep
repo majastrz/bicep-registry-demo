@@ -1,4 +1,4 @@
-param one string
+param one string = 'majastrzdep'
 
 resource first 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   name: one
