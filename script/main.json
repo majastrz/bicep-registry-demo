@@ -9,8 +9,8 @@
     ],
     "_generator": {
       "name": "bicep",
-      "version": "0.23.1.45101",
-      "templateHash": "7373912739989464385"
+      "version": "0.25.3.34343",
+      "templateHash": "9213851704625237903"
     }
   },
   "variables": {
@@ -21,7 +21,7 @@
       "type": "Microsoft.Resources/deploymentScripts",
       "apiVersion": "2020-10-01",
       "name": "myScript",
-      "location": "italynorth",
+      "location": "spaincentral",
       "kind": "AzurePowerShell",
       "properties": {
         "azPowerShellVersion": "9.7",

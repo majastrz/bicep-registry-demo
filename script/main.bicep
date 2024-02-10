@@ -1,7 +1,7 @@
 
 resource script 'Microsoft.Resources/deploymentScripts@2020-10-01' = {
   name: 'myScript'
-  location: 'italynorth'
+  location: 'spaincentral'
   kind: 'AzurePowerShell'
   properties: {
     azPowerShellVersion: '9.7'
