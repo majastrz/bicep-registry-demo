@@ -1,0 +1,2 @@
+
+output hello string = 'hello'
