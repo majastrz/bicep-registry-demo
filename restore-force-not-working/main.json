@@ -1,0 +1,224 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.25.3.34343",
+      "templateHash": "2469071660652483384"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "hello",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "name": {
+            "value": "hello"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "languageVersion": "2.1-experimental",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_EXPERIMENTAL_WARNING": "This template uses ARM features that are experimental. Experimental features should be enabled for testing purposes only, as there are no guarantees about the quality or stability of these features. Do not enable these settings for any production usage, or your production environment may be subject to breaking.",
+            "_EXPERIMENTAL_FEATURES_ENABLED": [
+              "Extensibility"
+            ],
+            "_generator": {
+              "name": "bicep",
+              "version": "0.25.3.34343",
+              "templateHash": "12463991272110115344"
+            }
+          },
+          "parameters": {
+            "name": {
+              "type": "string"
+            }
+          },
+          "resources": {
+            "storage": {
+              "type": "Microsoft.Storage/storageAccounts",
+              "apiVersion": "2023-01-01",
+              "name": "[parameters('name')]",
+              "location": "[resourceGroup().location]",
+              "sku": {
+                "name": "Standard_ZRS"
+              },
+              "kind": "StorageV2"
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "kv",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "name": {
+            "value": "kv"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "languageVersion": "2.1-experimental",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_EXPERIMENTAL_WARNING": "This template uses ARM features that are experimental. Experimental features should be enabled for testing purposes only, as there are no guarantees about the quality or stability of these features. Do not enable these settings for any production usage, or your production environment may be subject to breaking.",
+            "_EXPERIMENTAL_FEATURES_ENABLED": [
+              "Extensibility"
+            ],
+            "_generator": {
+              "name": "bicep",
+              "version": "0.25.3.34343",
+              "templateHash": "3798966206729853128"
+            }
+          },
+          "parameters": {
+            "name": {
+              "type": "string"
+            }
+          },
+          "resources": {
+            "kv": {
+              "type": "Microsoft.KeyVault/vaults",
+              "apiVersion": "2023-07-01",
+              "name": "[parameters('name')]",
+              "location": "[resourceGroup().location]",
+              "properties": {
+                "sku": {
+                  "family": "A",
+                  "name": "premium"
+                },
+                "tenantId": "[tenant().tenantId]"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "plan",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "something": {
+            "value": "plan"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "languageVersion": "2.1-experimental",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_EXPERIMENTAL_WARNING": "This template uses ARM features that are experimental. Experimental features should be enabled for testing purposes only, as there are no guarantees about the quality or stability of these features. Do not enable these settings for any production usage, or your production environment may be subject to breaking.",
+            "_EXPERIMENTAL_FEATURES_ENABLED": [
+              "Extensibility"
+            ],
+            "_generator": {
+              "name": "bicep",
+              "version": "0.25.3.34343",
+              "templateHash": "11802744643840678403"
+            }
+          },
+          "parameters": {
+            "something": {
+              "type": "string"
+            }
+          },
+          "resources": {}
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "func",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.25.3.34343",
+              "templateHash": "13205407758923439246"
+            }
+          },
+          "resources": [
+            {
+              "type": "Microsoft.Resources/deployments",
+              "apiVersion": "2022-09-01",
+              "name": "func",
+              "properties": {
+                "expressionEvaluationOptions": {
+                  "scope": "inner"
+                },
+                "mode": "Incremental",
+                "parameters": {
+                  "funcName": {
+                    "value": "myFunc"
+                  }
+                },
+                "template": {
+                  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+                  "contentVersion": "1.0.0.0",
+                  "metadata": {
+                    "_generator": {
+                      "name": "bicep",
+                      "version": "0.25.3.34343",
+                      "templateHash": "17473027552111157313"
+                    }
+                  },
+                  "parameters": {
+                    "funcName": {
+                      "type": "string"
+                    }
+                  },
+                  "resources": [
+                    {
+                      "type": "Microsoft.Web/sites",
+                      "apiVersion": "2023-01-01",
+                      "name": "site",
+                      "location": "[resourceGroup().location]"
+                    },
+                    {
+                      "type": "Microsoft.Web/sites/functions",
+                      "apiVersion": "2023-01-01",
+                      "name": "[format('{0}/{1}', 'site', parameters('funcName'))]",
+                      "dependsOn": [
+                        "[resourceId('Microsoft.Web/sites', 'site')]"
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -9,25 +9,18 @@
     ],
     "_generator": {
       "name": "bicep",
-      "version": "0.26.170.59819",
-      "templateHash": "1335227486650768774"
+      "version": "0.26.54.24096",
+      "templateHash": "8868029824636419835"
     }
   },
   "variables": {
-    "$fxv#0": "Write-Output \"Hello world!\";"
+    "rgLocation": "[resourceGroup().location]"
   },
-  "resources": {
-    "script": {
-      "type": "Microsoft.Resources/deploymentScripts",
-      "apiVersion": "2020-10-01",
-      "name": "myScript",
-      "location": "mexicocentral",
-      "kind": "AzurePowerShell",
-      "properties": {
-        "azPowerShellVersion": "11.4",
-        "retentionInterval": "PT1H",
-        "scriptContent": "[variables('$fxv#0')]"
-      }
+  "resources": {},
+  "outputs": {
+    "resourceGroup": {
+      "type": "string",
+      "value": "test"
     }
   }
 }
