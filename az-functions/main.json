@@ -1,0 +1,16 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "functions": [],
+  "variables": {
+    //"test": "[ToPhysicalZone('996a2f3f-ee01-4ffd-9765-d2c3fc98f30a', 'westus2', '2')]"
+  },
+  "resources": [],
+  "outputs": {
+    "output1": {
+      "type": "string",
+      "value": "[ToPhysicalZone('996a2f3f-ee01-4ffd-9765-d2c3fc98f30b', 'westus2', '2')]"
+    }
+  }
+}

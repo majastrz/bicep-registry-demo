@@ -1,0 +1,22 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "functions": [],
+  "variables": {},
+  "resources": [],
+  "outputs": {
+    "baseUri": {
+      "type": "object",
+      "value": "[parseUri('https://example.com/')]"
+    },
+    "withPaths": {
+      "type": "object",
+      "value": "[parseUri('https://example.com/foo/bar')]"
+    },
+    "withPort": {
+      "type": "object",
+      "value": "[parseUri('https://example.com:9933/foo/bar')]"
+    }
+  }
+}
