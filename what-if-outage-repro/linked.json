@@ -1,0 +1,24 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.33.93.31351",
+      "templateHash": "6258934388537437179"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2024-11-01",
+      "name": "linked",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "https://majastrzwhatifoutage.z1.web.core.windows.net/empty.json"
+        }
+      }
+    }
+  ]
+}
