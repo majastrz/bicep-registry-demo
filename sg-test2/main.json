@@ -1,0 +1,35 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "languageVersion": "2.1-experimental",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_EXPERIMENTAL_WARNING": "This template uses ARM features that are experimental. Experimental features should be enabled for testing purposes only, as there are no guarantees about the quality or stability of these features. Do not enable these settings for any production usage, or your production environment may be subject to breaking.",
+    "_EXPERIMENTAL_FEATURES_ENABLED": [
+      "Extensibility"
+    ],
+    "_generator": {
+      "name": "bicep",
+      "version": "0.34.44.8038",
+      "templateHash": "4763147723514509573"
+    }
+  },
+  "resources": {
+    "sg": {
+      "existing": true,
+      "type": "Microsoft.Consumption/budgets",
+      "apiVersion": "2024-08-01",
+      "scope": "/",
+      "name": "foo"
+    },
+    "ra": {
+      "type": "Microsoft.Authorization/roleAssignments",
+      "apiVersion": "2022-04-01",
+      "scope": "[format('Microsoft.Consumption/budgets/{0}', 'foo')]",
+      "name": "foo",
+      "properties": {
+        "principalId": "",
+        "roleDefinitionId": ""
+      }
+    }
+  }
+}
