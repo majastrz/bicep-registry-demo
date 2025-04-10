@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "$schema": "https://schema.management.azure.com/schemas/2019-08-01/tenantDeploymentTemplate.json#",
   "languageVersion": "2.1-experimental",
   "contentVersion": "1.0.0.0",
   "metadata": {
@@ -10,7 +10,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.34.44.8038",
-      "templateHash": "4763147723514509573"
+      "templateHash": "561570510685510336"
     }
   },
   "resources": {
@@ -18,7 +18,6 @@
       "existing": true,
       "type": "Microsoft.Consumption/budgets",
       "apiVersion": "2024-08-01",
-      "scope": "/",
       "name": "foo"
     },
     "ra": {
