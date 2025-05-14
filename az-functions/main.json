@@ -1,16 +1,45 @@
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "languageVersion": "2.1-experimental",
   "contentVersion": "1.0.0.0",
-  "parameters": {},
-  "functions": [],
-  "variables": {
-    //"test": "[ToPhysicalZone('996a2f3f-ee01-4ffd-9765-d2c3fc98f30a', 'westus2', '2')]"
+  "metadata": {
+    "_EXPERIMENTAL_WARNING": "This template uses ARM features that are experimental. Experimental features should be enabled for testing purposes only, as there are no guarantees about the quality or stability of these features. Do not enable these settings for any production usage, or your production environment may be subject to breaking.",
+    "_EXPERIMENTAL_FEATURES_ENABLED": [
+      "Extensibility"
+    ],
+    "_generator": {
+      "name": "bicep",
+      "version": "0.35.1.17967",
+      "templateHash": "2720842185319433601"
+    }
   },
-  "resources": [],
+  "variables": {
+    "subscriptionId": "[subscription().subscriptionId]",
+    "location": "westus2"
+  },
+  "resources": {},
   "outputs": {
-    "output1": {
+    "singlePhysicalZone": {
       "type": "string",
-      "value": "[ToPhysicalZone('996a2f3f-ee01-4ffd-9765-d2c3fc98f30b', 'westus2', '2')]"
+      "value": "[toPhysicalZone(variables('subscriptionId'), variables('location'), '1')]"
+    },
+    "physicalZones": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "value": "[toPhysicalZones(variables('subscriptionId'), variables('location'), createArray('1', '2'))]"
+    },
+    "singleLogicalZone": {
+      "type": "string",
+      "value": "[toLogicalZone(variables('subscriptionId'), variables('location'), 'westus2-az2')]"
+    },
+    "logicalZones": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "value": "[toLogicalZones(variables('subscriptionId'), variables('location'), createArray('westus2-az1', 'westus2-az2'))]"
     }
   }
 }
