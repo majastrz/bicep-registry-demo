@@ -1,0 +1,5 @@
+
+
+
+@export()
+func myFunc() string => ''
