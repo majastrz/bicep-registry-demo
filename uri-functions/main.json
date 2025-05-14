@@ -1,22 +1,27 @@
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "languageVersion": "2.1-experimental",
   "contentVersion": "1.0.0.0",
-  "parameters": {},
-  "functions": [],
-  "variables": {},
-  "resources": [],
+  "metadata": {
+    "_EXPERIMENTAL_WARNING": "This template uses ARM features that are experimental. Experimental features should be enabled for testing purposes only, as there are no guarantees about the quality or stability of these features. Do not enable these settings for any production usage, or your production environment may be subject to breaking.",
+    "_EXPERIMENTAL_FEATURES_ENABLED": [
+      "Extensibility"
+    ],
+    "_generator": {
+      "name": "bicep",
+      "version": "0.35.1.17967",
+      "templateHash": "10751763963887484985"
+    }
+  },
+  "resources": {},
   "outputs": {
-    "baseUri": {
+    "parsedUri": {
       "type": "object",
-      "value": "[parseUri('https://example.com/')]"
+      "value": "[parseUri('https://example.com:1234/foo/bar')]"
     },
-    "withPaths": {
-      "type": "object",
-      "value": "[parseUri('https://example.com/foo/bar')]"
-    },
-    "withPort": {
-      "type": "object",
-      "value": "[parseUri('https://example.com:9933/foo/bar')]"
+    "builtUri": {
+      "type": "string",
+      "value": "[buildUri(createObject('scheme', 'https', 'host', 'example.com', 'port', 1234, 'path', 'foo/bar'))]"
     }
   }
 }
