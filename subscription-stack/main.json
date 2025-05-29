@@ -6,21 +6,24 @@
     "_generator": {
       "name": "bicep",
       "version": "0.35.1.17967",
-      "templateHash": "10314268988472961900"
+      "templateHash": "14859953926911051308"
     }
+  },
+  "variables": {
+    "location": "[deployment().location]"
   },
   "resources": {
     "rg": {
       "type": "Microsoft.Resources/resourceGroups",
       "apiVersion": "2023-07-01",
-      "name": "majastrz-substack",
-      "location": "[deployment().location]"
+      "name": "[format('majastrz-substack-{0}', variables('location'))]",
+      "location": "[variables('location')]"
     },
     "tsmod": {
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2022-09-01",
       "name": "[format('tsmod-{0}', uniqueString('tsmod', deployment().name))]",
-      "resourceGroup": "majastrz-substack",
+      "resourceGroup": "[format('majastrz-substack-{0}', variables('location'))]",
       "properties": {
         "expressionEvaluationOptions": {
           "scope": "inner"
@@ -28,7 +31,7 @@
         "mode": "Incremental",
         "parameters": {
           "tsName": {
-            "value": "majastrz-ts"
+            "value": "[format('majastrz-ts-{0}', variables('location'))]"
           }
         },
         "template": {
