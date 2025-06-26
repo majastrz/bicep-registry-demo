@@ -1,0 +1,35 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.35.1.17967",
+      "templateHash": "5836299136338780084"
+    }
+  },
+  "parameters": {
+    "updateTag": {
+      "type": "string",
+      "defaultValue": "[utcNow()]"
+    }
+  },
+  "variables": {
+    "$fxv#0": "echo \"Hello from CLI!\""
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/deploymentScripts",
+      "apiVersion": "2020-10-01",
+      "name": "myScript4",
+      "location": "bleufrancesouth",
+      "kind": "AzureCLI",
+      "properties": {
+        "forceUpdateTag": "[parameters('updateTag')]",
+        "azCliVersion": "2.9.1",
+        "retentionInterval": "PT1H",
+        "scriptContent": "[variables('$fxv#0')]"
+      }
+    }
+  ]
+}

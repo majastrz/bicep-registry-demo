@@ -1,0 +1,35 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.35.1.17967",
+      "templateHash": "9163500705040122162"
+    }
+  },
+  "parameters": {
+    "updateTag": {
+      "type": "string",
+      "defaultValue": "[utcNow()]"
+    }
+  },
+  "variables": {
+    "$fxv#0": "Write-Output \"Hello world!\";"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/deploymentScripts",
+      "apiVersion": "2020-10-01",
+      "name": "myScript2",
+      "location": "bleufrancesouth",
+      "kind": "AzurePowerShell",
+      "properties": {
+        "forceUpdateTag": "[parameters('updateTag')]",
+        "azPowerShellVersion": "14.0",
+        "retentionInterval": "PT1H",
+        "scriptContent": "[variables('$fxv#0')]"
+      }
+    }
+  ]
+}
