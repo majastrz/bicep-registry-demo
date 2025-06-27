@@ -1,0 +1,47 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.35.1.17967",
+      "templateHash": "6416222763938215663"
+    }
+  },
+  "parameters": {
+    "updateTag": {
+      "type": "string",
+      "defaultValue": "[utcNow()]"
+    }
+  },
+  "variables": {
+    "$fxv#0": "Write-Output \"RG script start\";\r\n\r\n$rgs = Get-AzResourceGroup;\r\n\r\n$output = @();\r\nforeach ($rg in $rgs) \r\n{\r\n  $id = [string]$rg.ResourceId;\r\n  Write-Output $id;\r\n  $output = $output + $id;\r\n}\r\n\r\n$DeploymentScriptOutputs = @{};\r\n$DeploymentScriptOutputs[\"rgs\"] = $output;\r\n\r\nWrite-Output \"RG script completed\";"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/deploymentScripts",
+      "apiVersion": "2020-10-01",
+      "name": "myScript2",
+      "location": "[resourceGroup().location]",
+      "identity": {
+        "type": "UserAssigned",
+        "userAssignedIdentities": {
+          "[format('{0}', extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, 'majastrz-script-msi'), 'Microsoft.ManagedIdentity/userAssignedIdentities', 'majastrz-script-reader'))]": {}
+        }
+      },
+      "kind": "AzurePowerShell",
+      "properties": {
+        "forceUpdateTag": "[parameters('updateTag')]",
+        "azPowerShellVersion": "14.0",
+        "retentionInterval": "PT1H",
+        "scriptContent": "[variables('$fxv#0')]"
+      }
+    }
+  ],
+  "outputs": {
+    "result": {
+      "type": "object",
+      "value": "[reference(resourceId('Microsoft.Resources/deploymentScripts', 'myScript2'), '2020-10-01').outputs]"
+    }
+  }
+}

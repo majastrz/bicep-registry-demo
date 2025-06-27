@@ -1,0 +1,47 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.35.1.17967",
+      "templateHash": "9207176979695150551"
+    }
+  },
+  "parameters": {
+    "updateTag": {
+      "type": "string",
+      "defaultValue": "[utcNow()]"
+    }
+  },
+  "variables": {
+    "$fxv#0": "result=$(az group list); echo $result | jq -c \\'{Result: map({id: .id})}\\' > $AZ_SCRIPTS_OUTPUT_PATH"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/deploymentScripts",
+      "apiVersion": "2020-10-01",
+      "name": "cli-msi",
+      "location": "[resourceGroup().location]",
+      "identity": {
+        "type": "UserAssigned",
+        "userAssignedIdentities": {
+          "[format('{0}', extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, 'majastrz-script-msi'), 'Microsoft.ManagedIdentity/userAssignedIdentities', 'majastrz-script-reader'))]": {}
+        }
+      },
+      "kind": "AzureCLI",
+      "properties": {
+        "forceUpdateTag": "[parameters('updateTag')]",
+        "azCliVersion": "2.9.1",
+        "retentionInterval": "PT1H",
+        "scriptContent": "[variables('$fxv#0')]"
+      }
+    }
+  ],
+  "outputs": {
+    "result": {
+      "type": "object",
+      "value": "[reference(resourceId('Microsoft.Resources/deploymentScripts', 'cli-msi'), '2020-10-01').outputs]"
+    }
+  }
+}
