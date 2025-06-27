@@ -2,7 +2,7 @@ param updateTag string = utcNow()
 
 resource script 'Microsoft.Resources/deploymentScripts@2020-10-01' = {
   name: 'myScript4'
-  location: 'bleufrancesouth'
+  location: resourceGroup().location
   kind: 'AzureCLI'
   properties: {
     forceUpdateTag: updateTag

@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.35.1.17967",
-      "templateHash": "9163500705040122162"
+      "templateHash": "15363569566165097271"
     }
   },
   "parameters": {
@@ -22,7 +22,7 @@
       "type": "Microsoft.Resources/deploymentScripts",
       "apiVersion": "2020-10-01",
       "name": "myScript2",
-      "location": "bleufrancesouth",
+      "location": "[resourceGroup().location]",
       "kind": "AzurePowerShell",
       "properties": {
         "forceUpdateTag": "[parameters('updateTag')]",
