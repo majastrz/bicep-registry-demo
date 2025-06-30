@@ -20,6 +20,7 @@ resource script 'Microsoft.Resources/deploymentScripts@2020-10-01' = {
     azCliVersion: '2.9.1'
     retentionInterval: 'PT1H'
     scriptContent: loadTextContent('script.sh')
+    cleanupPreference: 'OnSuccess'
   }
 }
 

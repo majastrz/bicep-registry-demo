@@ -20,6 +20,7 @@ resource script 'Microsoft.Resources/deploymentScripts@2020-10-01' = {
     azPowerShellVersion: '14.0'
     retentionInterval: 'PT1H'
     scriptContent: loadTextContent('script.ps1')
+    cleanupPreference: 'OnSuccess'
   }
 }
 
