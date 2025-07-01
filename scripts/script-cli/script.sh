@@ -1,1 +1,1 @@
-echo "Hello from CLI!"
+echo "Hello from CLI!";
