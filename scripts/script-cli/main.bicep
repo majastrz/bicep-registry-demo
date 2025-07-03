@@ -6,7 +6,7 @@ resource script 'Microsoft.Resources/deploymentScripts@2020-10-01' = {
   kind: 'AzureCLI'
   properties: {
     forceUpdateTag: updateTag
-    azCliVersion: '2.9.1'
+    azCliVersion: '2.74.0'
     retentionInterval: 'PT1H'
     scriptContent: loadTextContent('script.sh')
   }

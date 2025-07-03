@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.35.1.17967",
-      "templateHash": "4465917357041686303"
+      "templateHash": "1442044753988275498"
     }
   },
   "parameters": {
@@ -32,7 +32,7 @@
       "kind": "AzureCLI",
       "properties": {
         "forceUpdateTag": "[parameters('updateTag')]",
-        "azCliVersion": "2.9.1",
+        "azCliVersion": "2.74.0",
         "retentionInterval": "PT1H",
         "scriptContent": "[variables('$fxv#0')]",
         "cleanupPreference": "OnSuccess"
