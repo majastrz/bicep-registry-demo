@@ -1,8 +1,10 @@
 param updateTag string = utcNow()
 
+param locationOverride string?
+
 resource script 'Microsoft.Resources/deploymentScripts@2020-10-01' = {
   name: 'myScript2'
-  location: resourceGroup().location
+  location: locationOverride ?? resourceGroup().location
   kind: 'AzurePowerShell'
   properties: {
     forceUpdateTag: updateTag
