@@ -1,16 +1,11 @@
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-  "languageVersion": "2.1-experimental",
   "contentVersion": "1.0.0.0",
   "metadata": {
-    "_EXPERIMENTAL_WARNING": "This template uses ARM features that are experimental. Experimental features should be enabled for testing purposes only, as there are no guarantees about the quality or stability of these features. Do not enable these settings for any production usage, or your production environment may be subject to breaking.",
-    "_EXPERIMENTAL_FEATURES_ENABLED": [
-      "Extensibility"
-    ],
     "_generator": {
       "name": "bicep",
-      "version": "0.28.1.47646",
-      "templateHash": "15825794759992837768"
+      "version": "0.38.3.11034",
+      "templateHash": "15875202986682652312"
     }
   },
   "variables": {
@@ -24,8 +19,8 @@
       "outputs": {}
     }
   },
-  "resources": {
-    "ts::v1": {
+  "resources": [
+    {
       "type": "Microsoft.Resources/templateSpecs/versions",
       "apiVersion": "2022-02-01",
       "name": "[format('{0}/{1}', resourceGroup().name, 'v1')]",
@@ -35,14 +30,14 @@
         "mainTemplate": "[variables('$fxv#0')]"
       },
       "dependsOn": [
-        "ts"
+        "[resourceId('Microsoft.Resources/templateSpecs', resourceGroup().name)]"
       ]
     },
-    "ts": {
+    {
       "type": "Microsoft.Resources/templateSpecs",
       "apiVersion": "2022-02-01",
       "name": "[resourceGroup().name]",
       "location": "[resourceGroup().location]"
     }
-  }
+  ]
 }
