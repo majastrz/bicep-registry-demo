@@ -365,3 +365,6 @@ FodyWeavers.xsd
 
 # user-specific launch settings for .net apps
 launchSettings.json
+
+# local Bicep extensions
+*.tgz
