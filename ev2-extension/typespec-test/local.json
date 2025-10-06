@@ -1,0 +1,71 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "languageVersion": "2.0",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.38.3.11034",
+      "templateHash": "9008220315327657631"
+    }
+  },
+  "imports": {
+    "ev2": {
+      "provider": "Ev2",
+      "version": "1.0.0"
+    }
+  },
+  "resources": {
+    "hello": {
+      "import": "ev2",
+      "type": "Microsoft.KeyVault.DataPlane/GenerateSshKeyPair@2020-03-01",
+      "properties": {
+        "name": "he",
+        "additionalHeaders": {},
+        "connectionProperties": {
+          "authentication": {
+            "properties": {
+              "applicationId": ""
+            },
+            "reference": {
+              "parameters": {
+                "secretId": ""
+              },
+              "provider": "AzureKeyVault"
+            },
+            "type": "AadApplicationAuthentication"
+          },
+          "maxExecutionTime": ""
+        },
+        "payloadProperties": {
+          "comment": {
+            "value": ""
+          },
+          "expirationInDays": {
+            "value": ""
+          },
+          "forceNewVersion": {
+            "value": "false"
+          },
+          "keyLength": {
+            "value": ""
+          },
+          "privateKeySecretName": {
+            "value": ""
+          },
+          "publicKeySecretName": {
+            "value": ""
+          },
+          "regenerateIfExpiringWithinDays": {
+            "value": ""
+          },
+          "vaultBaseUrl": {
+            "value": ""
+          }
+        },
+        "rolloutId": "",
+        "stepName": ""
+      }
+    }
+  }
+}
