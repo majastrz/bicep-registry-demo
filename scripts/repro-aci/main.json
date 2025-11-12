@@ -1,27 +1,15 @@
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-  "languageVersion": "2.1-experimental",
   "contentVersion": "1.0.0.0",
   "metadata": {
-    "_EXPERIMENTAL_WARNING": "This template uses ARM features that are experimental. Experimental features should be enabled for testing purposes only, as there are no guarantees about the quality or stability of these features. Do not enable these settings for any production usage, or your production environment may be subject to breaking.",
-    "_EXPERIMENTAL_FEATURES_ENABLED": [
-      "Extensibility"
-    ],
     "_generator": {
       "name": "bicep",
-      "version": "0.35.1.17967",
-      "templateHash": "11471067922571081698"
+      "version": "0.38.33.27573",
+      "templateHash": "11533908040103175924"
     }
   },
-  "resources": {
-    "msi": {
-      "existing": true,
-      "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
-      "apiVersion": "2024-11-30",
-      "resourceGroup": "majastrz-script-msi",
-      "name": "majastrz-script-reader"
-    },
-    "aci": {
+  "resources": [
+    {
       "type": "Microsoft.ContainerInstance/containerGroups",
       "apiVersion": "2023-05-01",
       "name": "majastrz-repro",
@@ -42,7 +30,7 @@
               "command": [
                 "bash",
                 "-c",
-                "sleep 4h"
+                "sleep 1h"
               ],
               "ports": [],
               "environmentVariables": [
@@ -72,11 +60,11 @@
                 },
                 {
                   "name": "AZ_SCRIPTS_PATH_CLOUD_SUFFIX",
-                  "value": "sovcloud-api.fr"
+                  "value": "sovcloud-api.de"
                 },
                 {
                   "name": "AZ_SCRIPTS_PATH_CLOUD_DNS_SUFFIX",
-                  "value": "core.sovcloud-api.fr"
+                  "value": "core.sovcloud-api.de"
                 },
                 {
                   "name": "AZ_SCRIPTS_PATH_EXECUTION_RESULTS_FILE_NAME",
@@ -84,11 +72,11 @@
                 },
                 {
                   "name": "AZ_SCRIPTS_ARM_CLOUD_METADATA_URL",
-                  "value": "https://management.sovcloud-api.fr/metadata/endpoints?api-version=2020-06-01"
+                  "value": "https://management.sovcloud-api.de/metadata/endpoints?api-version=2020-06-01"
                 },
                 {
                   "name": "AZ_SCRIPTS_AZURE_ENVIRONMENT",
-                  "value": "AzureFranceCloud"
+                  "value": "AzureGermanyCloud"
                 },
                 {
                   "name": "AZ_SCRIPTS_CLEANUP_PREFERENCE",
@@ -109,5 +97,5 @@
         "osType": "Linux"
       }
     }
-  }
+  ]
 }

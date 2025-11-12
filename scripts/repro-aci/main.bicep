@@ -22,7 +22,7 @@ resource aci 'Microsoft.ContainerInstance/containerGroups@2023-05-01' = {
           command: [
             'bash'
             '-c'
-            'sleep 4h'
+            'sleep 1h'
           ]
           ports: []
           environmentVariables: [
@@ -52,11 +52,11 @@ resource aci 'Microsoft.ContainerInstance/containerGroups@2023-05-01' = {
             }
             {
               name: 'AZ_SCRIPTS_PATH_CLOUD_SUFFIX'
-              value: 'sovcloud-api.fr'
+              value: 'sovcloud-api.de'
             }
             {
               name: 'AZ_SCRIPTS_PATH_CLOUD_DNS_SUFFIX'
-              value: 'core.sovcloud-api.fr'
+              value: 'core.sovcloud-api.de'
             }
             {
               name: 'AZ_SCRIPTS_PATH_EXECUTION_RESULTS_FILE_NAME'
@@ -64,11 +64,11 @@ resource aci 'Microsoft.ContainerInstance/containerGroups@2023-05-01' = {
             }
             {
               name: 'AZ_SCRIPTS_ARM_CLOUD_METADATA_URL'
-              value: 'https://management.sovcloud-api.fr/metadata/endpoints?api-version=2020-06-01'
+              value: 'https://management.sovcloud-api.de/metadata/endpoints?api-version=2020-06-01'
             }
             {
               name: 'AZ_SCRIPTS_AZURE_ENVIRONMENT'
-              value: 'AzureFranceCloud'
+              value: 'AzureGermanyCloud'
             }
             {
               name: 'AZ_SCRIPTS_CLEANUP_PREFERENCE'
