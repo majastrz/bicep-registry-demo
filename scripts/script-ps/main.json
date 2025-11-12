@@ -1,28 +1,33 @@
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "languageVersion": "2.0",
   "contentVersion": "1.0.0.0",
   "metadata": {
     "_generator": {
       "name": "bicep",
-      "version": "0.35.1.17967",
-      "templateHash": "15363569566165097271"
+      "version": "0.38.33.27573",
+      "templateHash": "4499598839803148550"
     }
   },
   "parameters": {
     "updateTag": {
       "type": "string",
       "defaultValue": "[utcNow()]"
+    },
+    "locationOverride": {
+      "type": "string",
+      "nullable": true
     }
   },
   "variables": {
     "$fxv#0": "Write-Output \"Hello world!\";"
   },
-  "resources": [
-    {
+  "resources": {
+    "script": {
       "type": "Microsoft.Resources/deploymentScripts",
       "apiVersion": "2020-10-01",
       "name": "myScript2",
-      "location": "[resourceGroup().location]",
+      "location": "[coalesce(parameters('locationOverride'), resourceGroup().location)]",
       "kind": "AzurePowerShell",
       "properties": {
         "forceUpdateTag": "[parameters('updateTag')]",
@@ -31,5 +36,5 @@
         "scriptContent": "[variables('$fxv#0')]"
       }
     }
-  ]
+  }
 }
