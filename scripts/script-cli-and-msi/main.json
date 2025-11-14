@@ -4,8 +4,8 @@
   "metadata": {
     "_generator": {
       "name": "bicep",
-      "version": "0.35.1.17967",
-      "templateHash": "1442044753988275498"
+      "version": "0.38.33.27573",
+      "templateHash": "6609318693241540254"
     }
   },
   "parameters": {
@@ -15,7 +15,7 @@
     }
   },
   "variables": {
-    "$fxv#0": "result=$(az group list);\necho $result | jq -c '{Result: map({id: .id})}' > $AZ_SCRIPTS_OUTPUT_PATH"
+    "$fxv#0": "result=$(az group list);\r\necho $result | jq -c '{Result: map({id: .id})}' > $AZ_SCRIPTS_OUTPUT_PATH"
   },
   "resources": [
     {
