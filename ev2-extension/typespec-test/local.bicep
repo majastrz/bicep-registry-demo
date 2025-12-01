@@ -1,6 +1,10 @@
-extension './test.tgz' as ev2
+param test bool
 
-resource test 'Microsoft.KeyVault.DataPlane/GenerateSshKeyPair@2020-03-01' = {
+extension './test.tgz' with {
+  useTestRolloutInfraInPublicCloud: test
+} as ev2
+
+resource foo 'Microsoft.KeyVault.DataPlane/GenerateSshKeyPair@2020-03-01' = {
   name: 
   additionalHeaders: {}
   connectionProperties: {
