@@ -1,0 +1,48 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "languageVersion": "2.1-experimental",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_EXPERIMENTAL_WARNING": "This template uses ARM features that are experimental. Experimental features should be enabled for testing purposes only, as there are no guarantees about the quality or stability of these features. Do not enable these settings for any production usage, or your production environment may be subject to breaking.",
+    "_EXPERIMENTAL_FEATURES_ENABLED": [
+      "Enable wait and retry feature"
+    ],
+    "_generator": {
+      "name": "bicep",
+      "version": "0.39.26.7824",
+      "templateHash": "14932191516998489529"
+    }
+  },
+  "parameters": {
+    "updateTag": {
+      "type": "string",
+      "defaultValue": "[utcNow()]"
+    }
+  },
+  "variables": {
+    "$fxv#0": "param(\r\n    [Parameter(Mandatory = $true)]\r\n    [int] $SuccessPercentage\r\n)\r\n\r\n$ErrorActionPreference = 'Stop';\r\n\r\nWrite-Output \"Starting flaky script with success percentage: $successPercentage\";\r\n\r\n$random = Get-SecureRandom -Maximum 100;\r\nWrite-Output \"Generated random number: $random\";\r\n\r\nif ($random -le $successPercentage) {\r\n    Write-Output \"Success!\";\r\n} else {\r\n    Write-Error \"Failure!\";\r\n}"
+  },
+  "resources": {
+    "script": {
+      "@options": {
+        "retryOn": [
+          [
+            "DeploymentScriptError"
+          ]
+        ]
+      },
+      "type": "Microsoft.Resources/deploymentScripts",
+      "apiVersion": "2020-10-01",
+      "name": "flakyScript",
+      "location": "[resourceGroup().location]",
+      "kind": "AzurePowerShell",
+      "properties": {
+        "forceUpdateTag": "[parameters('updateTag')]",
+        "azPowerShellVersion": "14.0",
+        "retentionInterval": "PT1H",
+        "scriptContent": "[variables('$fxv#0')]",
+        "arguments": "-SuccessPercentage 25"
+      }
+    }
+  }
+}

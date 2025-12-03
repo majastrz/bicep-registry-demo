@@ -1,4 +1,7 @@
-param([int] $SuccessPercentage)
+param(
+    [Parameter(Mandatory = $true)]
+    [int] $SuccessPercentage
+)
 
 $ErrorActionPreference = 'Stop';
 
