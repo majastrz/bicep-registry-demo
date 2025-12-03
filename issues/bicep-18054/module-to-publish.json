@@ -1,0 +1,49 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "languageVersion": "2.0",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.39.26.7824",
+      "templateHash": "11409215879409528607"
+    }
+  },
+  "functions": [
+    {
+      "namespace": "__bicep",
+      "members": {
+        "getConfig": {
+          "parameters": [
+            {
+              "type": "string",
+              "name": "key"
+            }
+          ],
+          "output": {
+            "type": "string",
+            "value": "[format('{0}', variables('configMap')[parameters('key')][tenant().tenantId])]"
+          },
+          "metadata": {
+            "__bicep_export!": true
+          }
+        }
+      }
+    }
+  ],
+  "variables": {
+    "developmentTenantId": "94430a9c-83e9-4f08-bbb0-64fccd0661fc",
+    "productionTenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47",
+    "configMap": {
+      "key1": {
+        "[format('{0}', variables('developmentTenantId'))]": "dev value 1",
+        "[format('{0}', variables('productionTenantId'))]": "prod value 1"
+      },
+      "key2": {
+        "[format('{0}', variables('developmentTenantId'))]": "dev value 2",
+        "[format('{0}', variables('productionTenantId'))]": "prod value 2"
+      }
+    }
+  },
+  "resources": {}
+}
