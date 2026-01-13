@@ -1,0 +1,28 @@
+{
+  "properties": {
+    "deploymentStackResourceId": "/subscriptions/996a2f3f-ee01-4ffd-9765-d2c3fc98f30a/resourceGroups/majastrz-stacks-whatif/providers/Microsoft.Resources/deploymentStacks/empty",
+    "retentionInterval": "P7D",
+    "template": {
+      "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+      "contentVersion": "1.0.0.0",
+      "metadata": {
+        "_generator": {
+          "name": "bicep",
+          "version": "0.39.26.7824",
+          "templateHash": "16873125938269548923"
+        }
+      },
+      "resources": []
+    },
+    "parameters": {},
+    "actionOnUnmanage": {
+      "resources": "delete",
+      "resourceGroups": "delete",
+      "managementGroups": "delete"
+    },
+    "denySettings": {
+      "mode": "none",
+      "applyToChildScopes": false
+    }
+  }
+}
