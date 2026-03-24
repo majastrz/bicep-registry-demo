@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "foo": {
+      "expression": "[flatten(createArray(map(externalInputs('t_0'), lambda('objectId', createObject('objectId', lambdaVariables('objectId'), 'permissions', __bicep.getKeyVaultFullAccessPermissions())))))]"
+    }
+  },
+  "externalInputDefinitions": {
+    "t_0": {
+      "kind": "t",
+      "config": "c"
+    }
+  }
+}
