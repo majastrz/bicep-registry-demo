@@ -1,21 +1,21 @@
 param tsName string = 'one'
 
-resource ts 'Microsoft.Resources/templateSpecs@2022-02-01' = {
-  name: tsName
-  location: resourceGroup().location
+// resource ts 'Microsoft.Resources/templateSpecs@2022-02-01' = {
+//   name: tsName
+//   location: resourceGroup().location
 
-  resource v1 'versions' = {
-    name: 'v1'
-    location: resourceGroup().location
-    properties: {
-      description: 'The first version'
-      mainTemplate: loadJsonContent('ts.json')
-    }
-  }
-}
+//   resource v1 'versions' = {
+//     name: 'v1'
+//     location: resourceGroup().location
+//     properties: {
+//       description: 'The first version'
+//       mainTemplate: loadJsonContent('ts.json')
+//     }
+//   }
+// }
 
 resource storage 'Microsoft.Storage/storageAccounts@2022-05-01' = {
-  name: 'majastrzstacktest3'
+  name: 'majastrz${uniqueString(resourceGroup().id)}'
   location: resourceGroup().location
   sku: {
     name: 'Standard_LRS'
