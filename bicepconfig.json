@@ -6,6 +6,14 @@
       "AzurePowerShell"
     ]
   },
+  "moduleAliases": {
+    "ts": {},
+    "br": {
+      "foo": {
+        "registry": "majastrzpublic.azurecr.io"
+      }
+    }
+  },
   "analyzers": {
     "core": {
       "enabled": true,

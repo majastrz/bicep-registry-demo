@@ -7,7 +7,7 @@ resource rg 'Microsoft.Resources/resourceGroups@2020-06-01' = {
 
 // private 'br:majastrzoci.azurecr.io/demo/plan:v2'
 // public 'br:majastrzpublic.azurecr.io/demo/plan:v2'
-module appPlanDeploy 'br:majastrzpublic.azurecr.io/demo/plan:v2' = {
+module appPlanDeploy 'br/foo:demo/plan:v2' = {
   name: 'planDeploy'
   scope: rg
   params: {
