@@ -1,0 +1,24 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.42.1.51946",
+      "templateHash": "8851493068463127512"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2025-08-01",
+      "name": "[uniqueString(resourceGroup().id, 'repro')]",
+      "location": "[resourceGroup().location]",
+      "sku": {
+        "name": "Standard_LRS"
+      },
+      "kind": "StorageV2",
+      "properties": "[shallowMerge(createArray(createObject('networkAcls', createObject('defaultAction', 'Deny', 'ipRules', map(createArray(), lambda('item', createObject('value', lambdaVariables('item'), 'action', 'Allow'))))), createObject()))]"
+    }
+  ]
+}
